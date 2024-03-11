@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: binaryho-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "webapp.binaryho.com"
+      # tls:
+      #   httpsRedirect: true # https로 리다이렉트
+    # - port:
+    #     number: 443
+    #     name: https
+    #     protocol: HTTPS
+    #   tls: # tls 설정
+    #     mode: SIMPLE # MUTUAL, SIMPLE, PASSTHROUGH | MUTUAL: 상호인증, SIMPLE: 단방향, PASSTHROUGH: 인증 없음(서버에서 직접 처리)
+    #     credentialName: webapp-credential
+    #   hosts:
+    #     - "webapp.binaryho.com"
